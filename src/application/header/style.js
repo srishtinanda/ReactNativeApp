@@ -6,7 +6,7 @@ export default {
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 20,
-        backgroundColor: COLOR.green100
+        backgroundColor: COLOR.teal100
     },
     text: {
         fontSize: 20,

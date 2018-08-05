@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View, Keyboard } from 'react-native';
+import styles from './style';
 
 export class TextBox extends React.Component {
   constructor(props) {
@@ -9,9 +10,11 @@ export class TextBox extends React.Component {
 
   render() {
     return (
-      <View style={{padding: 10}}>
+      <View style={styles.container}>
         <TextInput
-          style={{height: 40}}
+          style={styles.text}
+          placeholder={this.props.placeholder}
+          editable={false}
           onChangeText={(text) => this.setState({text})}
           value={this.props.value}
         />

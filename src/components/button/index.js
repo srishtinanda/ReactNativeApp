@@ -8,14 +8,13 @@ export class Keys extends React.Component {
         super(props);
     }
     render() {
-        return (
-            <Button 
-                style={{container: styles.container, text: styles.text}}
-                text={this.props.text}
-                raised={true}
-                primary={true}
-                onPress={this.props.onAction}
-                />
-        );
+      return (
+        <Button 
+          style={{container: styles.container, text: styles.text}}
+          text={this.props.text}
+          raised={true}
+          primary={true}
+          onPress={this.props.onAction}
+        />);
     }
 }

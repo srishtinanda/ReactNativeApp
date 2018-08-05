@@ -1,70 +1,79 @@
 import React from 'react';
-import { ScrollView, View , Text} from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import styles from './style';
-import { SimpleCard as Card} from '../../components/card';
+import { SimpleCard as Card } from '../../components/card';
 import { Keys } from '../../components/button';
-import { Col, Row, Grid } from "react-native-easy-grid";
 import { TextBox as InputBox } from '../../components/inputBox';
-import { 
+import {
     userTypedInput,
     calculateResult,
     clearInputString,
     deleteLastChar,
     calculateInput
- } from '../../redux-framework/actions';
+} from '../../redux-framework/actions';
 import { connect } from 'react-redux';
 
-const CALCULATOR_KEYS = [[1, 2, 3],[4, 5,
-6],[7, 8, 9],[0, "+", "-"],["*", "/","="]];
+const CALCULATOR_KEYS = [[1, 2, 3], [4, 5,
+    6], [7, 8, 9], [0, "+", "-"], ["*", "/", "="]];
 
-const FUNCTIONAL_KEYS = ["Clear","Del"];
-
-const regExp = /^([^0-9]*)$/
+const FUNCTIONAL_KEYS = ["Clear", "Delete"];
 
 class Calculator extends React.Component {
     constructor(props) {
         super(props);
-      }
-    render() {
-    const checkFirstOperation = regExp.test(this.props.input) ?
-        this.props.calculate(this.props.input) : undefined;
-    return (
-            <ScrollView>
-                <Card>
-                <InputBox value={this.props.input}/>
-                <InputBox value={this.props.result}/>
-                {this.functional}
-                    {this.content}
-                </Card>
-            </ScrollView>
-        );
     }
-    
+    render() {
+      return (
+        <ScrollView>
+          <Card>
+            <Card>
+              <InputBox value={this.props.input} />
+            </Card>
+            <Card>
+              <InputBox placeholder="Result"
+                value={this.props.result} />
+            </Card>
+            <Card>
+                {this.functional}
+                {this.content}
+            </Card>
+          </Card>
+        </ScrollView>
+      );
+    }
+
     content = CALCULATOR_KEYS.map((key) => {
-      return key.map((item) => {
-          <View style={styles.row}/>
+      return (
+        <View style={styles.eachRow}>
+          {key.map((item) => {
             return (
-                <View style={styles.col}>
-                    <Keys text={item.toString()}
-                        onAction={(item) => {(item !== '=') ?
-                        this.handleKeyPress(item) :
-                        this.handleKeyOperation(item)}}
-                    /> 
-                </View>
-            );
-        })
-    });
+              <View style={styles.eachColumn} >
+                <Keys text={item.toString()}
+                  onAction={(item) => {
+                    (item !== '=') ?
+                    this.handleKeyPress(item) :
+                    this.handleKeyOperation(item)
+                  }}
+                />
+              </View>);
+            })
+          }
+        </View>);
+    })
 
     functional = FUNCTIONAL_KEYS.map((item) => {
-        return (
-            <Keys text={item}
-            onAction={(item) => {(item == 'Clear') ?
-            this.handleClear() :
-            this.handleDelete()}}
-        /> 
-        )
+      return (
+        <View style={styles.keyPad}>
+          <Keys text={item}
+            onAction={(item) => {
+              (item == 'Clear') ?
+              this.handleClear() :
+              this.handleDelete()
+            }}
+          />
+        </View>)
     })
-    
+
     handleKeyPress = (item) => {
         return this.props.selectedValue(item);
     }
@@ -80,12 +89,12 @@ class Calculator extends React.Component {
     handleDelete = () => {
         return this.props.delete();
     }
- }   
+}
 
 const mapStateToProps = state => {
     return {
         input: state.userInput.inputString,
-        result: state.userInput.result 
+        result: state.userInput.result
     };
 }
 

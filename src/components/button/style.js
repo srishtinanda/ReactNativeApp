@@ -2,13 +2,14 @@ import { COLOR } from "react-native-material-ui";
 
 export default { 
     container: {
-        width: 50,
-        height: 50,
+        marginHorizontal: 8,
+        marginVertical: 8,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: COLOR.teal500
     },
     text: {
-        fontSize: 30,
+        fontSize: 20,
         color: COLOR.black
     }
 };

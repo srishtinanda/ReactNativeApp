@@ -1,11 +1,17 @@
+
+import { COLOR } from 'react-native-material-ui';
+
 export default {
-    row: {
-        paddingVertical: 8,
-        paddingHorizontal: 8,
-        display: 'inline-flex'
+    eachRow: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap'
     },
-    col: {
+    eachColumn: {
+        paddingHorizonatal: 8,
         paddingVertical: 8,
-        paddingHorizontal: 8,
-    }
+        flex:1,
+        flexDirection: 'column',
+        flexWrap: 'wrap'
+    },
 }

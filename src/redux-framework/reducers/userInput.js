@@ -4,7 +4,11 @@ import {
     CLEAR_INPUT,
     DELETE_CHARACTER
 } from '../actions/types';
-import { validateStringWithSign, calculateTheResult } from './helper-methods/helper';
+import { 
+    validateStringWithSign,
+    calculateTheResult,
+    validateDeletedString
+} from './helper-methods/helper';
 
 const initial_state = { inputString: '', result: '' } ;
 
@@ -20,10 +24,11 @@ export default (state = initial_state, action) => {
             };
         
         case 'CALCULATE':
-            let result = calculateTheResult(state.inputString);
+            calculatedValue = state.inputString !== '' ?
+                calculateTheResult(state.inputString) : '0';
             return { 
-                inputString: result,
-                result 
+                inputString: '',
+                result: calculatedValue
             };
         
         case 'CLEAR_INPUT':
@@ -33,9 +38,11 @@ export default (state = initial_state, action) => {
             };
         
         case 'DELETE_CHARACTER':
+            validString = state.inputString.substring(0, state.inputString.length-1);
+            calculatedValue = validateDeletedString(validString, action.payload);
             return { 
-                inputString: state.inputString.substring(0, state.inputString.length-1),
-                result: state.result
+                inputString: validString,
+                result: calculatedValue === '0' ? state.result : calculatedValue
             };
         
         default :
