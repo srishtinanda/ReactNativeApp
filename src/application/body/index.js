@@ -34,15 +34,15 @@ class Calculator extends React.Component {
                 value={this.props.result} />
             </Card>
             <Card>
-                {this.functional}
-                {this.content}
+                {this.clearKeys}
+                {this.keyPad}
             </Card>
           </Card>
         </ScrollView>
       );
     }
 
-    content = CALCULATOR_KEYS.map((key) => {
+    keyPad = CALCULATOR_KEYS.map((key) => {
       return (
         <View style={styles.eachRow}>
           {key.map((item) => {
@@ -61,7 +61,7 @@ class Calculator extends React.Component {
         </View>);
     })
 
-    functional = FUNCTIONAL_KEYS.map((item) => {
+    clearKeys = FUNCTIONAL_KEYS.map((item) => {
       return (
         <View style={styles.keyPad}>
           <Keys text={item}
@@ -71,7 +71,7 @@ class Calculator extends React.Component {
               this.handleDelete()
             }}
           />
-        </View>)
+        </View>);
     })
 
     handleKeyPress = (item) => {
