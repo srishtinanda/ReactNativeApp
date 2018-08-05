@@ -42,12 +42,12 @@ class Calculator extends React.Component {
       );
     }
 
-    keyPad = CALCULATOR_KEYS.map((key) => {
+    keyPad = CALCULATOR_KEYS.map((key, i) => {
       return (
-        <View style={styles.eachRow}>
-          {key.map((item) => {
+        <View key={i} style={styles.eachRow}>
+          {key.map((item, i) => {
             return (
-              <View style={styles.eachColumn} >
+              <View key={i} style={styles.eachColumn} >
                 <Keys text={item.toString()}
                   onAction={(item) => {
                     (item !== '=') ?
@@ -61,9 +61,9 @@ class Calculator extends React.Component {
         </View>);
     })
 
-    clearKeys = FUNCTIONAL_KEYS.map((item) => {
+    clearKeys = FUNCTIONAL_KEYS.map((item, i) => {
       return (
-        <View style={styles.keyPad}>
+        <View key={i} style={styles.keyPad}>
           <Keys text={item}
             onAction={(item) => {
               (item == 'Clear') ?
