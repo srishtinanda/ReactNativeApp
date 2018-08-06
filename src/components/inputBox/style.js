@@ -4,8 +4,8 @@ import { Platform } from '../../assets/utils/platform';
 
 export default {
     container: {
-        padding: Platform.isIOS ? 10 : 0,
-        marginBottom : Platform.isAndroid ? 8 : 0,
+        padding: (Platform() === 'isIOS') ? 10 : 0,
+        marginBottom : (Platform() === 'isIOS') ? 8 : 0,
         backgroundColor: COLOR.teal500
     },
     text: {

@@ -1,12 +1,12 @@
 import DeviceInfo from 'react-native-device-info';
 
-const model = DeviceInfo.getModel();
+const model = DeviceInfo.getSystemName();
 
-export const Platform = {
-    get isIOS() {
-        return model.iOS;
-    },
-    get isAndroid() {
-        return model.Android;
+export const Platform = () => {
+    if (model === 'iOS') {
+        return 'isIOS';
     }
-};
+    else {
+        return 'isAndroid';
+    }
+}
