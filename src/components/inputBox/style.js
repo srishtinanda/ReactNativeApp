@@ -1,9 +1,11 @@
 
 import { COLOR } from 'react-native-material-ui';
+import { Platform } from '../../assets/utils/platform';
 
 export default {
     container: {
-        padding: 10,
+        padding: Platform.isIOS ? 10 : 0,
+        marginBottom : Platform.isAndroid ? 8 : 0,
         backgroundColor: COLOR.teal500
     },
     text: {
