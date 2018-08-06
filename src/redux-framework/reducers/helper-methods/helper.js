@@ -1,15 +1,22 @@
 const regExpNAN = /^([^0-9]*)$/;
 const validateExp = /([0-9])$/;
 
+const invalidSign = /[\+/\*]$/;
+
 export const validateStringWithSign = (input, newChar) => {
     if (input.length > 0) {
         let lastChar = input[input.length-1];
         if (regExpNAN.test(lastChar) && regExpNAN.test(newChar)) {
             return input.substring(0, input.length-1).concat(newChar);
-        } else
-        return input.concat(newChar);      
-    } else 
-    return input.concat(newChar);
+        } else {
+            return input.concat(newChar);
+        }      
+    } else if (input.length === 0 && invalidSign.test(newChar)) {
+        return '';
+    }
+    else {
+        return input.concat(newChar);
+    }
 } 
 
 export const validateDeletedString = (input) => {
@@ -24,7 +31,10 @@ export const validateDeletedString = (input) => {
 } 
 
 export const calculateTheResult = (input) => {
-    if (validateExp.test(input)) {
+    const validInput = (input === 0) &&
+     (invalidSign.test(input)) ? '' : input; 
+    
+    if (validateExp.test(validInput)) {
         let n = 0;
         let s = input;
         // Multiplication, division first
@@ -41,8 +51,11 @@ export const calculateTheResult = (input) => {
         // Addition, subtraction second
             s = addition(s);
         return s;
-    } else {
-        return calculateTheResult(input.substring(0, input.length-1));
+    }
+     else {
+        return !!validInput ? 
+        calculateTheResult(validInput.substring(0, validInput.length-1))
+         : '';
     }
 }
 
