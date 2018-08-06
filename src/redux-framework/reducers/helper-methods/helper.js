@@ -31,10 +31,10 @@ export const calculateTheResult = (input) => {
         let r = new RegExp(/([0-9]*\.?[0-9]*)([\*/])([0-9]*\.?[0-9]*)/);
         while (r.test(s)) {
             var m = r.exec(s);
-            if (m[2] === '*') {
-                n = new Number(m[1]) * new Number(m[3]);
-            } else {
+            if (m[2] === '/') {
                 n = new Number(m[1]) / new Number(m[3]);
+            } else {
+                n = new Number(m[1]) * new Number(m[3]);
             }
             s = s.replace(m[0], n);
         }
