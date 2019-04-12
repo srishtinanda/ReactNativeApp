@@ -6,7 +6,7 @@ import styles from './style';
 const Header = () => { 
     return (
         <View>
-            <Subheader style={{container: styles.container, text: styles.text}} text="Calculator1"/>
+            <Subheader style={{container: styles.container, text: styles.text}} text="Calculator"/>
         </View>
     );
 }
